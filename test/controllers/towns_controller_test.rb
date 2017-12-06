@@ -3,6 +3,7 @@ require 'test_helper'
 class TownsControllerTest < ActionController::TestCase
   setup do
     @town = towns(:one)
+    @inexisting = towns(:inexisting)
   end
 
   test "should get index" do
@@ -17,12 +18,35 @@ class TownsControllerTest < ActionController::TestCase
   end
 
   test "should create town" do
-    assert_difference('Town.count') do
-      post :create, town: { lat: @town.lat, lon: @town.lon, name: @town.name }
+    VCR.use_cassette("town_ok") do
+      assert_difference('Town.count') do
+        post :create, town: { lat: @town.lat, lon: @town.lon, name: @town.name }
+      end
     end
 
     assert_redirected_to town_path(assigns(:town))
   end
+  
+  
+  
+  
+  
+  
+  test "should fail if town does not exist" do
+    VCR.use_cassette("town_inexisting") do
+      assert_no_difference('Town.count') do
+        post :create, town: { name: @inexisting.name }
+      end
+   end
+
+    assert_response :success
+  end
+  
+  
+  
+  
+  
+  
 
   test "should show town" do
     get :show, id: @town
@@ -35,7 +59,9 @@ class TownsControllerTest < ActionController::TestCase
   end
 
   test "should update town" do
-    patch :update, id: @town, town: { lat: @town.lat, lon: @town.lon, name: @town.name }
+    VCR.use_cassette("town_update") do
+      patch :update, id: @town, town: { lat: @town.lat, lon: @town.lon, name: @town.name }
+    end
     assert_redirected_to town_path(assigns(:town))
   end
 
