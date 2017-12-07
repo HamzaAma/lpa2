@@ -49,8 +49,10 @@ class TownsControllerTest < ActionController::TestCase
   
 
   test "should show town" do
+    VCR.use_cassette("town_show") do
     get :show, id: @town
     assert_response :success
+  end
   end
 
   test "should get edit" do

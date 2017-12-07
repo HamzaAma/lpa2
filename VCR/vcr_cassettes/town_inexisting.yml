@@ -17,7 +17,7 @@ http_interactions:
       message: 
     headers:
       date:
-      - Sat, 02 Dec 2017 09:21:08 GMT
+      - Thu, 07 Dec 2017 21:50:59 GMT
       server:
       - Apache/2.4.18 (Ubuntu)
       access-control-allow-origin:
@@ -34,5 +34,5 @@ http_interactions:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Sat, 02 Dec 2017 09:21:08 GMT
+  recorded_at: Thu, 07 Dec 2017 21:50:59 GMT
 recorded_with: VCR 3.0.3
