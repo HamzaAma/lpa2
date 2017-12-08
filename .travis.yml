@@ -7,6 +7,3 @@ deploy:
     secure: d2e3d422-dc4d-4550-8665-0d8548e56dc0
   app: applpa2
   run: "rake db:migrate"
-  install:
-  - bundle install --path vendor/bundle
-  - npm install
